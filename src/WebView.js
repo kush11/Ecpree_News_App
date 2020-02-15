@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View,TouchableOpacity} from 'react-native';
 import Webview from 'react-native-webview';
+import Icon from 'react-native-vector-icons/Ionicons'
 export default class WebView extends PureComponent {
   constructor(props) {
     super(props);
@@ -30,15 +31,15 @@ export default class WebView extends PureComponent {
         }}>
         <View
           style={{flex: 0.15, justifyContent: 'center', alignItems: 'center'}}>
-          <Text
+          <TouchableOpacity
           style={{
-              color:'white'
+            //   backgroundColor:'white'
           }}
             onPress={() => {
               this.props.navigation.goBack();
             }}>
-            Back
-          </Text>
+            <Icon name='md-arrow-back' size={30} color='white'/>
+          </TouchableOpacity>
         </View>
         <View style={{flex: 1}}>
           <Text
