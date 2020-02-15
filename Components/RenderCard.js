@@ -13,9 +13,9 @@ import Circle from './Circle';
 import {renderTimer} from './RenderTimer';
 
 export const renderCard = (item, props) => {
-    const clickFunction = (data) => {
-        console.log('data from parent to child', data);
-    }
+  const clickFunction = data => {
+    console.log('data from parent to child', data);
+  };
   return (
     <View
       style={{
@@ -44,7 +44,8 @@ export const renderCard = (item, props) => {
             }}>
             <View style={{flex: 1}}>{renderTimer(item.source.name, '')}</View>
             <View style={{flex: 0.05}} />
-            <View style={{flex: 1, justifyContent:'center', alignItems:'center'}}>
+            <View
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               {renderTimer(
                 moment(`${item.publishedAt}`).format('MMMM Do YYYY, h:mm'),
                 'ios-time',
@@ -61,6 +62,14 @@ export const renderCard = (item, props) => {
           // margin: 5,
           borderTopLeftRadius: 50,
           borderTopRightRadius: 50,
+          elevation: 5,
+          borderWidth: 0.15,
+          backgroundColor: 'white',
+          borderRadius: 15,
+          borderColor: 'transparent',
+          shadowOffset: {width: 4, height: 4},
+          shadowColor: '#90a4ae',
+          shadowOpacity: 5.0,
         }}>
         <View
           id="share and gmail view"
@@ -71,8 +80,18 @@ export const renderCard = (item, props) => {
             justifyContent: 'flex-end',
             flexDirection: 'row',
           }}>
-          <Circle clickFunction={clickFunction} word={'gmail'} color={'gray'} icon="facebook-with-circle" />
-          <Circle clickFunction={clickFunction} word={'share'} color={'gray'} icon="share" />
+          <Circle
+            clickFunction={clickFunction}
+            word={'gmail'}
+            color={'gray'}
+            icon="facebook-with-circle"
+          />
+          <Circle
+            clickFunction={clickFunction}
+            word={'share'}
+            color={'gray'}
+            icon="share"
+          />
         </View>
         <View
           style={{
@@ -104,7 +123,7 @@ export const renderCard = (item, props) => {
             borderTopRightRadius: 40,
             // borderBottomLeftRadius: 40,
             // borderBottomRightRadius: 40,
-            backgroundColor: 'orange',
+            backgroundColor: '#dcdcdc',
             justifyContent: 'center',
           }}>
           <Text style={{textAlign: 'center', fontSize: 20, padding: 5}}>
