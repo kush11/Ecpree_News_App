@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Dimensions.get('window').width;
 export const renderTimer = (data, icon) => {
   const height = 24;
   return (
@@ -23,8 +24,10 @@ export const renderTimer = (data, icon) => {
         <View
           style={{
             flex: 0.5,
-            justifyContent: 'center',
-            alignItems: 'center',
+            // backgroundColor:'red',
+            right:5,
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
           }}>
           <Icon name={icon} size={20} />
         </View>
@@ -32,6 +35,7 @@ export const renderTimer = (data, icon) => {
       <Text
         style={{
           // fontStyle: 'italic',
+          alignItems:'center',
           color: 'black',
         }}>
         {data}
