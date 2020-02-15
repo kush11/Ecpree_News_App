@@ -13,7 +13,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 class DeckSwiper extends PureComponent {
   constructor(props) {
     super(props);
-
+    console.log(this.props.propsData)
     this.position = new Animated.ValueXY();
     this.swipedCardPosition = new Animated.ValueXY({x: 0, y: -SCREEN_HEIGHT});
     this.state = {
@@ -78,12 +78,7 @@ class DeckSwiper extends PureComponent {
       .map((item, i) => {
         if (i == this.state.currentIndex - 1) {
           return (
-            <Animated.View
-              key={item.source.name}
-              style={this.swipedCardPosition.getLayout()}
-              {...this.PanResponder.panHandlers}>
-              {this.props.renderCard(item)}
-            </Animated.View>
+            <View>{this.props.renderNoMoreCards(this.props.propsData)}</View>
           );
         } else if (i < this.state.currentIndex) {
           return null;

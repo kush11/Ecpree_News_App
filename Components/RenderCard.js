@@ -24,7 +24,7 @@ export const renderCard = (item, props) => {
         height: SCREEN_HEIGHT,
         width: SCREEN_WIDTH,
       }}>
-      <View style={{flex: 2.5, backgroundColor: 'gray'}}>
+      <View style={{flex: 1.5, backgroundColor: 'gray'}}>
         <ImageBackground
           source={{
             uri: item.urlToImage,
@@ -43,8 +43,8 @@ export const renderCard = (item, props) => {
               justifyContent: 'space-around',
             }}>
             <View style={{flex: 1}}>{renderTimer(item.source.name, '')}</View>
-            <View style={{flex: 0.2}} />
-            <View style={{flex: 1}}>
+            <View style={{flex: 0.05}} />
+            <View style={{flex: 1, justifyContent:'center', alignItems:'center'}}>
               {renderTimer(
                 moment(`${item.publishedAt}`).format('MMMM Do YYYY, h:mm'),
                 'ios-time',
