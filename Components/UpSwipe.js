@@ -74,19 +74,32 @@ class DeckSwiper extends PureComponent {
   // }
 
   renderArticles = () => {
+    const len =this.props.data.length
     return this.props.data
       .map((item, i) => {
         if (i == this.state.currentIndex - 1) {
+          if(i+1 === len){
+            return(
+              <View>{this.props.renderNoMoreCards(this.props.propsData)}</View>
+            )
+          }
+          else
           return (
-            <View>{this.props.renderNoMoreCards(this.props.propsData)}</View>
+          <Animated.View
+              key={item.publishedAt}
+              style={this.swipedCardPosition.getLayout()}
+              {...this.PanResponder.panHandlers}>
+              {this.props.renderCard(item)}
+            </Animated.View>
           );
         } else if (i < this.state.currentIndex) {
           return null;
         }
+        
         if (i == this.state.currentIndex) {
           return (
             <Animated.View
-              key={item.source.name}
+              key={item.publishedAt}
               style={this.position.getLayout()}
               {...this.PanResponder.panHandlers}>
               {this.props.renderCard(item)}
@@ -94,7 +107,7 @@ class DeckSwiper extends PureComponent {
           );
         } else {
           return (
-            <Animated.View key={item.source.name}>
+            <Animated.View key={item.publishedAt}>
               {this.props.renderCard(item)}
             </Animated.View>
           );
@@ -106,20 +119,20 @@ class DeckSwiper extends PureComponent {
   render() {
     return (
       <View style={{flex: 1}}>
-        {/* {this.state.currentIndex == this.props.data.length ? (
+        {this.props.data.length <= 0 ? (
           <View
             style={{
               flex: 1,
-              backgroundColor: 'red',
+              backgroundColor: 'black',
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text>No Data</Text>
+            <Text style={{color:'white',fontSize:30,}}>News Loding...</Text>
           </View>
         ) : (
           this.renderArticles()
-        )} */}
-        {this.renderArticles()}
+        )}
+        {/* {this.renderArticles()} */}
       </View>
     );
   }
