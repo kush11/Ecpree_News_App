@@ -64,7 +64,7 @@ export default class App extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.props.navigation.navigate('FrontPageScreen', {
-                  category: item.name,
+                  category: item.name
                 });
               }}
               style={{flex: 1, flexDirection: 'column', margin: 1}}>
