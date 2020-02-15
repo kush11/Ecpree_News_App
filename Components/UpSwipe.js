@@ -3,7 +3,6 @@ import {
   View,
   Text,
   Dimensions,
-  Image,
   Animated,
   PanResponder,
 } from 'react-native';
@@ -22,7 +21,7 @@ class DeckSwiper extends PureComponent {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: (e, gestureState) => true,
       onPanResponderMove: (evt, gestureState) => {
@@ -80,7 +79,7 @@ class DeckSwiper extends PureComponent {
         if (i == this.state.currentIndex - 1) {
           return (
             <Animated.View
-              key={item.id}
+              key={item.source.name}
               style={this.swipedCardPosition.getLayout()}
               {...this.PanResponder.panHandlers}>
               {this.props.renderCard(item)}
@@ -92,7 +91,7 @@ class DeckSwiper extends PureComponent {
         if (i == this.state.currentIndex) {
           return (
             <Animated.View
-              key={item.id}
+              key={item.source.name}
               style={this.position.getLayout()}
               {...this.PanResponder.panHandlers}>
               {this.props.renderCard(item)}
@@ -100,7 +99,7 @@ class DeckSwiper extends PureComponent {
           );
         } else {
           return (
-            <Animated.View key={item.id}>
+            <Animated.View key={item.source.name}>
               {this.props.renderCard(item)}
             </Animated.View>
           );
@@ -112,7 +111,7 @@ class DeckSwiper extends PureComponent {
   render() {
     return (
       <View style={{flex: 1}}>
-        {this.state.currentIndex == this.props.data.length ? (
+        {/* {this.state.currentIndex == this.props.data.length ? (
           <View
             style={{
               flex: 1,
@@ -124,7 +123,8 @@ class DeckSwiper extends PureComponent {
           </View>
         ) : (
           this.renderArticles()
-        )}
+        )} */}
+        {this.renderArticles()}
       </View>
     );
   }
