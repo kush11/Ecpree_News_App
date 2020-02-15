@@ -10,8 +10,11 @@ class App extends PureComponent {
       serverData: [],
     };
     const category = this.props.navigation.getParam('category');
+    const apiKey = 'e9ed76ff6496462b8096d1e4b3178434';
+    const pageSize = 20;
+    const url = category === 'Top Headlines' ? `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}` : `https://newsapi.org/v2/top-headlines?country=in&category=${category}&apiKey=${apiKey}&pageSize=${pageSize}`
     fetch(
-      `https://newsapi.org/v2/top-headlines?country=in&category=${category}&apiKey=e9ed76ff6496462b8096d1e4b3178434&pageSize=1`,
+      `${url}`,
       // 'https://newsapi.org/v2/top-headlines?country=us&apiKey=e9ed76ff6496462b8096d1e4b3178434',
       // 'https://newsapi.org/v2/top-headlines?country=in&apiKey=e9ed76ff6496462b8096d1e4b3178434',
       {

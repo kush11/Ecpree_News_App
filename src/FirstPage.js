@@ -12,10 +12,10 @@ import {
 } from 'react-native';
 //import all the components we will need
 const Data = [
-  {
-    id: 1,
-    name: 'Top Headlines',
-  },
+  // {
+  //   id: 1,
+  //   name: 'Top Headlines',
+  // },
   {
     id: 2,
     name: 'Entertainment',
@@ -49,20 +49,28 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.MainContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('FrontPageScreen', {
+              category: 'Top Headlines',
+            });
+          }}
+          style={styles.imageThumbnail}>
+          <Text>Top Headlines</Text>
+        </TouchableOpacity>
         <FlatList
           data={Data}
           renderItem={({item}) => (
             <TouchableOpacity
               onPress={() => {
-                console.log(item.name)
-                console.log(this.props);
                 this.props.navigation.navigate('FrontPageScreen', {
-                  category: item.name
+                  category: item.name,
                 });
               }}
               style={{flex: 1, flexDirection: 'column', margin: 1}}>
               <View style={styles.imageThumbnail}>
                 <Text>{item.name}</Text>
+                {/* <Text>dsd</Text> */}
               </View>
             </TouchableOpacity>
           )}
@@ -84,7 +92,16 @@ const styles = StyleSheet.create({
   imageThumbnail: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    padding: 10,
+    marginTop: 10,
+    elevation: 5,
+    borderWidth: 0.15,
+    backgroundColor: 'white',
+    borderRadius: 15,
+    borderColor: 'transparent',
+    shadowOffset: {width: 4, height: 4},
+    shadowColor: '#90a4ae',
+    shadowOpacity: 5.0,
     height: 100,
   },
 });
