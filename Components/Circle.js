@@ -1,16 +1,19 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-
+import { Text, View, StyleSheet,TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Entypo'
 const circle = ({
-    word = 'Default', color
+    word = 'Default', color,icon,clickFunction
 }) => (
         <View style={{ padding: 9 }}>
-            <View style={[{
+            <TouchableOpacity 
+            onPress={()=>clickFunction(word)}
+            style={[{
                 ...styles.circle,
                 backgroundColor: color ? color : 'transparent'
             }]}>
-                <Text style={{ fontSize: 10 }}>{word}</Text>
-            </View>
+                {/* <Text style={{ fontSize: 10 }}>{word}</Text> */}
+                <Icon name={icon} size={30}/>
+            </TouchableOpacity>
         </View>
     );
 
