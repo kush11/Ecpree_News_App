@@ -13,16 +13,16 @@ const Routes = createStackNavigator(
         FrontPageScreen: {
             screen: FrontPage,
             navigationOptions: {
-                gesturesEnabled: false,
-                header: null,
+                gestureEnabled: false,
+                headerShown: false,
                 title: null
             }
         },
         WebView: {
             screen: WebView,
             navigationOptions: {
-                gesturesEnabled: false,
-                header: null,
+                gestureEnabled: false,
+                headerShown: false,
                 title: null
             }
         },
