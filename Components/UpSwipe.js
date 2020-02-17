@@ -63,7 +63,9 @@ class DeckSwiper extends PureComponent {
             Animated.spring(this.swipedCardPosition, {
               toValue: {x: 0, y: -SCREEN_HEIGHT},
             }),
-          ]).start();
+          ],{
+            useNativeDriver: true
+          }).start();
         }
       },
     });
