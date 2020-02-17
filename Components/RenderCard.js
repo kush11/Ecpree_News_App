@@ -7,14 +7,29 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
+import Share from 'react-native-share';
+import Icon from 'react-native-vector-icons/Ionicons';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 import Circle from './Circle';
 import {renderTimer} from './RenderTimer';
 
 export const renderCard = (item, props) => {
-  const clickFunction = data => {
+  console.log('dsdsdsd', props)
+  const clickFunction = (data, item) => {
+    const shareOptions = {
+      title: item.title,
+      message: item.content,
+      stickerImage: item.urlToImage,
+      backgroundImage: item.urlToImage,
+      url: item.url,
+      social: Share.Social.FACEBOOK,
+    };
+    data === 'facebook'
+      ? Share.shareSingle(shareOptions)
+      : Share.open(shareOptions);
     console.log('data from parent to child', data);
+    // console.log('data from parent ', item);
   };
   return (
     <View
@@ -33,6 +48,13 @@ export const renderCard = (item, props) => {
             flex: 1,
             resizeMode: 'cover',
           }}>
+          <TouchableOpacity
+            style={{padding:10, height:null, width:'10%'}}
+            onPress={() => {
+              props.navigation.goBack();
+            }}>
+            <Icon name="md-arrow-back" size={30} color="white" />
+          </TouchableOpacity>
           <View
             style={{
               position: 'absolute',
@@ -82,15 +104,17 @@ export const renderCard = (item, props) => {
           }}>
           <Circle
             clickFunction={clickFunction}
-            word={'gmail'}
+            word={'facebook'}
             color={'gray'}
             icon="facebook-with-circle"
+            data={item}
           />
           <Circle
             clickFunction={clickFunction}
             word={'share'}
             color={'gray'}
             icon="share"
+            data={item}
           />
         </View>
         <View
