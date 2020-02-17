@@ -6,8 +6,9 @@ import {
   View,
   FlatList,
   Text,
-  ActivityIndicator,
+  ImageBackground,
   Image,
+  StatusBar,
   TouchableOpacity,
 } from 'react-native';
 //import all the components we will need
@@ -49,30 +50,37 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.MainContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('FrontPageScreen', {
-              category: 'Top Headlines',
-            });
-          }}
-          style={styles.imageThumbnail}>
-          <Text>Top Headlines</Text>
-        </TouchableOpacity>
+        <StatusBar backgroundColor="lightskyblue" />
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('FrontPageScreen', {
+                category: 'Top Headlines',
+              });
+            }}
+            style={[styles.imageThumbnail, {width: '80%'}]}>
+            <Text>Top Headlines</Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
           data={Data}
           renderItem={({item}) => (
-            <TouchableOpacity
+            <View
+              style={{flex: 1,flexDirection: 'column', margin: 10}}>
+              <TouchableOpacity 
               onPress={() => {
                 this.props.navigation.navigate('FrontPageScreen', {
-                  category: item.name
+                  category: item.name,
                 });
               }}
-              style={{flex: 1, flexDirection: 'column', margin: 1}}>
-              <View style={styles.imageThumbnail}>
+              style={[styles.imageThumbnail]}>
                 <Text>{item.name}</Text>
                 {/* <Text>dsd</Text> */}
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+              {/* <Image style={{height:100,width:null, bottom:100}} source={{uri:'https://i.picsum.photos/id/1076/200/300.jpg'}}>
+
+              </Image> */}
+            </View>
           )}
           //Setting the number of column
           numColumns={2}
@@ -88,6 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     paddingTop: 30,
+    backgroundColor:'lightskyblue'
   },
   imageThumbnail: {
     justifyContent: 'center',
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     elevation: 5,
     borderWidth: 0.15,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderRadius: 15,
     borderColor: 'transparent',
     shadowOffset: {width: 4, height: 4},
